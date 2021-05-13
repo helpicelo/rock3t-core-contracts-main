@@ -32,22 +32,23 @@
 require('dotenv').config();
 
 // const UniswapRouter = require('../build/contracts/UniswapRouter02.json')
-const PriceOracle = require('../build/contracts/PriceOracle.json')
+// const PriceOracle = require('../build/contracts/PriceOracle.json')
+const RocketToken = require('../build/contracts/RocketToken.json')
 const Web3 =  require('web3');
 const ContractKit =  require('@celo/contractkit');
 const web3 = new Web3(process.env.DATAHUB_CELO_TESTNET)
 const kit = ContractKit.newKitFromWeb3(web3)
 
-var contract_address = process.env.UBESWAP_ROUTER
+var contract_address = "0x1E22EaAc87dA8B8194B8ef35F8e66b8a68beD8Bb"
 
 const main =  async  ()  =>  {
 
     let instance = new web3.eth.Contract(
-        PriceOracle.abi,
+        RocketToken.abi,
         contract_address
     )
 
-    const txo = await instance.methods.consult()
+    const txo = await instance.methods.transfer
 
     let name = await instance.methods.blockTimestampLast().call() 
 

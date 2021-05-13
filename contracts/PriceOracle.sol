@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity = 0.6.12;
-import "./interfaces/IUniswapV2Pair.sol";
+import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
 import '@uniswap/lib/contracts/libraries/FixedPoint.sol';
-// import '@uniswap/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol';
+import '@uniswap/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol';
 import "./facades/ERC20Like.sol";
 
 
@@ -41,7 +41,7 @@ contract PriceOracle {
 
         uint _priceCumulative;
         (uint _price0Cumulative, uint _price1Cumulative, uint32 _blockTimestamp) =
-            pair.kLast(address(pair));
+            UniswapV2OracleLibrary.currentCumulativePrices(address(pair));
         if(token0 == tokenA) {
           _priceCumulative = _price0Cumulative;
         } else {
@@ -66,7 +66,7 @@ contract PriceOracle {
         uint _priceCumulative;
 
         (uint _price0Cumulative, uint _price1Cumulative, uint32 _blockTimestamp) =
-            pair.kLast(address(pair));
+            UniswapV2OracleLibrary.currentCumulativePrices(address(pair));
 
         if(token0 == tokenA) {
           _priceCumulative = _price0Cumulative;
