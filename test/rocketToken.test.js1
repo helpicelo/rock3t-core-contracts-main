@@ -1,5 +1,5 @@
-const Ganache = require('./helpers/ganache');
-const deployUniswap = require('./helpers/deployUniswap');
+const Ganache = require('./helpers/ganache.js1');
+const deployUniswap = require('./helpers/deployUniswap.js1');
 const { expectEvent, expectRevert, constants } = require("@openzeppelin/test-helpers");
 
 const RocketToken = artifacts.require('RocketToken');
@@ -14,8 +14,8 @@ contract('rocket token', accounts => {
 
   const assertBNequal = (bnOne, bnTwo) => assert.equal(bnOne.toString(), bnTwo.toString());
 
-  let uniswapFactory;
-  let uniswapRouter;
+  let uniswapFactory = "0x62d5b84bE28a183aBB507E125B384122D2C25fAE";
+  let uniswapRouter = "0xE3D8bd6Aed4F159bc8000a9cD47CffDb95F96121";
 
   let rocketToken;
   let feeApprover;
@@ -95,4 +95,5 @@ contract('rocket token', accounts => {
       assertBNequal(feeDestinationAfter, expectdFeeAmount);
       assertBNequal(recepientBalance, expectedBalance);
   });
+  
 });

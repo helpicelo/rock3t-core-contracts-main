@@ -41,20 +41,20 @@ module.exports = async function (deployer, network, accounts) {
     const liquidVaultInstance = await LiquidVault.deployed();
     await pausePromise('Liquidity Vault');
 
-    let uniswapPair;
-    let uniswapOracle;
+    // let uniswapPair;
+    // let uniswapOracle;
 
-    await pausePromise('seed fee approver');
+    // await pausePromise('seed fee approver');
     // create uniswap pair manually on production and initialize/unpause fee approver
-    if (network !== 'mainnet') {
-        await rocketTokenInstance.createUniswapPair();
-        uniswapPair = await rocketTokenInstance.tokenUniswapPair();
+    // if (network !== 'mainnet') {
+    //     await rocketTokenInstance.createUniswapPair();
+    //     uniswapPair = await rocketTokenInstance.tokenUniswapPair();
 
-        uniswapOracle = await deployer.deploy(PriceOracle, uniswapPair, rocketTokenInstance.address, CELO_TESTNET_ADDRESS);
+    //     uniswapOracle = await deployer.deploy(PriceOracle, uniswapPair, rocketTokenInstance.address, CELO_TESTNET_ADDRESS);
 
-        await feeApproverInstance.initialize(uniswapPair, liquidVaultInstance.address);
-        await feeApproverInstance.unPause();
-    }
+    //     await feeApproverInstance.initialize(uniswapPair, liquidVaultInstance.address);
+    //     await feeApproverInstance.unPause();
+    // }
 
     // await pausePromise('seed fee distributor');
     // await feeDistributorInstance.seed(
