@@ -133,7 +133,7 @@ contract LiquidVault is Ownable {
         config.feeDistributor = _feeDistributor;
         config.tokenPair = _uniswapPair;
         config.uniswapRouter = _uniswapRouter;
-        config.weth = IWETH(config.uniswapRouter.WETH());
+        config.weth = IWETH(0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9);
         treasury = _treasury;
         config.uniswapOracle = _uniswapOracle;
     }

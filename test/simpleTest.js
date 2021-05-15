@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const Ganache = require('./helpers/ganache');
 const { expectEvent, expectRevert } = require("@openzeppelin/test-helpers");
 
 const FeeApprover = artifacts.require('FeeApprover');
@@ -23,6 +24,11 @@ contract('FeeApprover', () => {
     let PairAddress
     
     const assertBNequal = (bnOne, bnTwo) => assert.equal(bnOne.toString(), bnTwo.toString());
+
+    before('setup others', async function() {
+      feeApprover = await FeeApprover.new();
+      await ganache.snapshot();
+    });
 
     // FEE_APPROVER DEPLOYED
     it('Should deploy smart contract properly', async () => {

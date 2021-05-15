@@ -10,10 +10,11 @@ const PriceOracle = artifacts.require('PriceOracle');
 const { 
     UBESWAP_FACTORY, 
     UBESWAP_ROUTER,
-    CELO_TESTNET_ADDRESS
-    // TREASURY,
+    CELO_TESTNET_ADDRESS,
+    DEV_TREASURY,
     // FEE_RECEIVER,
-    // SECONDARY_ADDRESS_SHARE,
+    DEV_SECOND,
+    SECONDARY_ADDRESS_SHARE
     // WETH_KOVAN
 } = process.env;
 
@@ -41,37 +42,37 @@ module.exports = async function (deployer, network, accounts) {
     const liquidVaultInstance = await LiquidVault.deployed();
     await pausePromise('Liquidity Vault');
 
-    // let uniswapPair;
-    // let uniswapOracle;
+    let uniswapPair;
+    let uniswapOracle;
 
-    // await pausePromise('seed fee approver');
+    await pausePromise('seed fee approver');
     // create uniswap pair manually on production and initialize/unpause fee approver
-    // if (network !== 'mainnet') {
-    //     await rocketTokenInstance.createUniswapPair();
-    //     uniswapPair = await rocketTokenInstance.tokenUniswapPair();
+    if (network !== 'mainnet') {
+        await rocketTokenInstance.createUniswapPair();
+        uniswapPair = await rocketTokenInstance.tokenUniswapPair();
 
-    //     uniswapOracle = await deployer.deploy(PriceOracle, uniswapPair, rocketTokenInstance.address, CELO_TESTNET_ADDRESS);
+        uniswapOracle = await deployer.deploy(PriceOracle, uniswapPair, rocketTokenInstance.address, CELO_TESTNET_ADDRESS);
 
-    //     await feeApproverInstance.initialize(uniswapPair, liquidVaultInstance.address);
-    //     await feeApproverInstance.unPause();
-    // }
+        await feeApproverInstance.initialize(uniswapPair, liquidVaultInstance.address);
+        await feeApproverInstance.unPause();
+    }
 
-    // await pausePromise('seed fee distributor');
-    // await feeDistributorInstance.seed(
-    //     rocketTokenInstance.address,
-    //     liquidVaultInstance.address,
-    //     FEE_RECEIVER,
-    //     SECONDARY_ADDRESS_SHARE
-    // );
-    // await pausePromise('seed liquidity vault');
-    // await liquidVaultInstance.seed(
-    //   rocketTokenInstance.address,
-    //   feeDistributorInstance.address,
-    //   UNISWAP_ROUTER,
-    //   uniswapPair,
-    //   TREASURY,
-    //   uniswapOracle.address
-    // );
+    await pausePromise('seed fee distributor');
+    await feeDistributorInstance.seed(
+        rocketTokenInstance.address,
+        liquidVaultInstance.address,
+        DEV_SECOND,
+        SECONDARY_ADDRESS_SHARE
+    );
+    await pausePromise('seed liquidity vault');
+    await liquidVaultInstance.seed(
+      rocketTokenInstance.address,
+      feeDistributorInstance.address,
+      UBESWAP_ROUTER,
+      uniswapPair,
+      DEV_TREASURY,
+      uniswapOracle.address
+    );
 
 }
 
