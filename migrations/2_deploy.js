@@ -7,6 +7,11 @@ const UniswapV2Router = artifacts.require('UniswapV2Router02')
 const LiquidVault = artifacts.require('LiquidVault');
 const PriceOracle = artifacts.require('PriceOracle');
 
+const IUniswapV2Pair = artifacts.require('IUniswapV2Pair');
+const UniswapFactory = artifacts.require('UniswapFactory');
+const UniswapWETH = artifacts.require('UniswapWETH');
+const UniswapRouter = artifacts.require('UniswapRouter');
+
 const { 
     UBESWAP_FACTORY, 
     UBESWAP_ROUTER,
@@ -25,6 +30,9 @@ module.exports = async function (deployer, network, accounts) {
     if (network === 'development') {
         return;
     }
+
+    const feeApproverInstance = await UniswapRouter.at("0xE3D8bd6Aed4F159bc8000a9cD47CffDb95F96121");
+    await pausePromise('Ubeswap Router');
 
     await deployer.deploy(FeeApprover);
     const feeApproverInstance = await FeeApprover.deployed();
@@ -55,6 +63,7 @@ module.exports = async function (deployer, network, accounts) {
 
         await feeApproverInstance.initialize(uniswapPair, liquidVaultInstance.address);
         await feeApproverInstance.unPause();
+        await feeApproverInstance.setFeeMultiplier(10);
     }
 
     await pausePromise('seed fee distributor');
@@ -73,6 +82,41 @@ module.exports = async function (deployer, network, accounts) {
       DEV_TREASURY,
       uniswapOracle.address
     );
+
+    const amount = "100000";
+    await pausePromise('deposit in the vault');
+    await rocketTokenInstance.transfer(liquidVault.address, web3.utils.toWei(amount))
+    
+    await pausePromise('should be possible to add liquidity on pair');
+    
+    // const liquidityTokensAmount = bn('10000').mul(baseUnit); // 10.000 tokens
+    // const liquidityEtherAmount = bn('5').mul(baseUnit); // 5 ETH
+  
+    const pair = await IUniswapV2Pair.at(uniswapPair);
+  
+    const reservesBefore = await pair.getReserves();
+
+    await rocketTokenInstance.approve(UBESWAP_ROUTER, web3.utils.toWei(11000000));
+    
+    // await uniswapRouter.at(UBESWAP_ROUTER).addLiquidityETH(
+    //     rocketTokenI.address,
+    //     liquidityTokensAmount,
+    //     0,
+    //     0,
+    //     OWNER,
+    //     new Date().getTime() + 3000,
+    //     {value: liquidityEtherAmount}
+    // );
+  
+    // const reservesAfter = await pair.getReserves();
+  
+    // if (await pair.token0() == rocketToken.address) {
+    //     assertBNequal(reservesAfter[0], liquidityTokensAmount);
+    //     assertBNequal(reservesAfter[1], liquidityEtherAmount);
+    // } else {
+    //     assertBNequal(reservesAfter[0], liquidityEtherAmount);
+    //     assertBNequal(reservesAfter[1], liquidityTokensAmount);
+    // }
 
 }
 
