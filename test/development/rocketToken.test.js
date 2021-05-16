@@ -1,5 +1,5 @@
-const Ganache = require('./helpers/ganache.js1');
-const deployUniswap = require('./helpers/deployUniswap.js1');
+const Ganache = require('../helpers/ganache.js');
+const deployUniswap = require('../helpers/deployUniswap.js');
 const { expectEvent, expectRevert, constants } = require("@openzeppelin/test-helpers");
 
 const RocketToken = artifacts.require('RocketToken');

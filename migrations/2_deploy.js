@@ -3,7 +3,7 @@ require('dotenv').config();
 const FeeApprover = artifacts.require('FeeApprover');
 const FeeDistributor = artifacts.require('FeeDistributor');
 const RocketToken = artifacts.require('RocketToken');
-const UniswapV2Router = artifacts.require('UniswapV2Router02')
+// const UniswapV2Router = artifacts.require('UniswapV2Router02')
 const LiquidVault = artifacts.require('LiquidVault');
 const PriceOracle = artifacts.require('PriceOracle');
 

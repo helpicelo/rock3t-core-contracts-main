@@ -1,5 +1,5 @@
-const Ganache = require('./helpers/ganache');
-const deployUniswap = require('./helpers/deployUniswap');
+const Ganache = require('../helpers/ganache');
+const deployUniswap = require('../helpers/deployUniswap');
 
 const FeeDistributor = artifacts.require('FeeDistributor');
 const RocketToken = artifacts.require('RocketToken');

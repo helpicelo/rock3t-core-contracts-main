@@ -1,5 +1,5 @@
-const Ganache = require('./helpers/ganache');
-const deployUniswap = require('./helpers/deployUniswap');
+const Ganache = require('../helpers/ganache');
+const deployUniswap = require('../helpers/deployUniswap');
 const { expectRevert } = require("@openzeppelin/test-helpers");
 
 const FeeDistributor = artifacts.require('FeeDistributor');
