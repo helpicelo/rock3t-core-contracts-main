@@ -9,7 +9,7 @@ const PriceOracle = artifacts.require('PriceOracle');
 
 const IUniswapV2Pair = artifacts.require('IUniswapV2Pair');
 const UniswapFactory = artifacts.require('UniswapFactory');
-const UniswapWETH = artifacts.require('UniswapWETH');
+// const UniswapWETH = artifacts.require('UniswapWETH');
 const UniswapRouter = artifacts.require('UniswapRouter');
 
 const { 
@@ -17,7 +17,7 @@ const {
     UBESWAP_ROUTER,
     CELO_TESTNET_ADDRESS,
     DEV_TREASURY,
-    // FEE_RECEIVER,
+    DEV_ACCOUNT,
     DEV_SECOND,
     SECONDARY_ADDRESS_SHARE
     // WETH_KOVAN
@@ -31,7 +31,7 @@ module.exports = async function (deployer, network, accounts) {
         return;
     }
 
-    const feeApproverInstance = await UniswapRouter.at("0xE3D8bd6Aed4F159bc8000a9cD47CffDb95F96121");
+    const UniswapRouterInstance = await UniswapRouter.at("0xE3D8bd6Aed4F159bc8000a9cD47CffDb95F96121");
     await pausePromise('Ubeswap Router');
 
     await deployer.deploy(FeeApprover);
@@ -85,28 +85,27 @@ module.exports = async function (deployer, network, accounts) {
 
     const amount = "100000";
     await pausePromise('deposit in the vault');
-    await rocketTokenInstance.transfer(liquidVault.address, web3.utils.toWei(amount))
-    
-    await pausePromise('should be possible to add liquidity on pair');
+    await rocketTokenInstance.transfer(liquidVaultInstance.address, web3.utils.toWei(amount))
+
     
     // const liquidityTokensAmount = bn('10000').mul(baseUnit); // 10.000 tokens
     // const liquidityEtherAmount = bn('5').mul(baseUnit); // 5 ETH
-  
+    await pausePromise('should be possible to add liquidity on pair');
     const pair = await IUniswapV2Pair.at(uniswapPair);
-  
     const reservesBefore = await pair.getReserves();
 
-    await rocketTokenInstance.approve(UBESWAP_ROUTER, web3.utils.toWei(11000000));
-    
-    // await uniswapRouter.at(UBESWAP_ROUTER).addLiquidityETH(
-    //     rocketTokenI.address,
-    //     liquidityTokensAmount,
-    //     0,
-    //     0,
-    //     OWNER,
-    //     new Date().getTime() + 3000,
-    //     {value: liquidityEtherAmount}
-    // );
+    await rocketTokenInstance.approve(UBESWAP_ROUTER, web3.utils.toWei("11000000"));
+    await  
+
+    await UniswapRouterInstance.addLiquidityETH(
+        rocketTokenInstance.address,
+        liquidityTokensAmount,
+        0,
+        0,
+        OWNER,
+        new Date().getTime() + 3000,
+        {value: liquidityEtherAmount}
+    );
   
     // const reservesAfter = await pair.getReserves();
   

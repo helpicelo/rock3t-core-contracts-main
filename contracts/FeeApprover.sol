@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol"; // for WETH
 
 import "./interfaces/IUniswapV2Factory.sol";
-import "./interfaces/IUniswapV2Router02.sol";
+import '@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol';
 
 contract FeeApprover is Ownable {
     using SafeMath for uint256;

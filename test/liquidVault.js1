@@ -9,7 +9,6 @@ const IUniswapV2Pair = artifacts.require('IUniswapV2Pair');
 const FeeApprover = artifacts.require('FeeApprover');
 const PriceOracle = artifacts.require('PriceOracle');
 
-
 contract('liquid vault', function(accounts) {
   const ganache = new Ganache(web3);
   afterEach('revert', ganache.revert);

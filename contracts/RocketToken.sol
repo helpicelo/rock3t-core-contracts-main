@@ -9,7 +9,7 @@ import "./facades/FeeApproverLike.sol";
 import "@nomiclabs/buidler/console.sol";
 
 import "./interfaces/IUniswapV2Factory.sol";
-import "./interfaces/IUniswapV2Router02.sol";
+import '@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol';
 import "./interfaces/IUniswapV2Pair.sol";
 
 import "@openzeppelin/contracts/access/Ownable.sol";
