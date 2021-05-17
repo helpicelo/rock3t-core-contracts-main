@@ -15,7 +15,7 @@ const UniswapRouter = artifacts.require('UniswapRouter');
 const { 
     UBESWAP_FACTORY, 
     UBESWAP_ROUTER,
-    CELO_TESTNET_ADDRESS,
+    CELO_ADDRESS,
     DEV_TREASURY,
     DEV_ACCOUNT,
     DEV_SECOND,
@@ -59,7 +59,7 @@ module.exports = async function (deployer, network, accounts) {
         await rocketTokenInstance.createUniswapPair();
         uniswapPair = await rocketTokenInstance.tokenUniswapPair();
 
-        uniswapOracle = await deployer.deploy(PriceOracle, uniswapPair, rocketTokenInstance.address, CELO_TESTNET_ADDRESS);
+        uniswapOracle = await deployer.deploy(PriceOracle, uniswapPair, rocketTokenInstance.address, CELO_ADDRESS);
 
         await feeApproverInstance.initialize(uniswapPair, liquidVaultInstance.address);
         await feeApproverInstance.unPause();

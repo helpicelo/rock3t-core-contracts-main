@@ -1,8 +1,8 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/facades/ERC20Like.sol": {
-      "lastModificationDate": 1621127690273,
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/facades/ERC20Like.sol": {
+      "lastModificationDate": 1621187496263,
       "contentHash": "5127793665226471dd66cb496f196678",
       "sourceName": "contracts/facades/ERC20Like.sol",
       "solcConfig": {
@@ -37,8 +37,8 @@
         "ERC20Like"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1621128096852,
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+      "lastModificationDate": 1621187512543,
       "contentHash": "e0a41531d159d3a32f84b7a3ecf9fabb",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
@@ -71,9 +71,9 @@
         "IERC20"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/PriceOracle.sol": {
-      "lastModificationDate": 1621127690272,
-      "contentHash": "9408f11e059bbb49057a390679505949",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/PriceOracle.sol": {
+      "lastModificationDate": 1621225099389,
+      "contentHash": "8d955cb27ecbc7f327a529f185f8dc8b",
       "sourceName": "contracts/PriceOracle.sol",
       "solcConfig": {
         "version": "0.6.12",
@@ -98,9 +98,9 @@
         }
       },
       "imports": [
-        "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol",
-        "@uniswap/lib/contracts/libraries/FixedPoint.sol",
-        "@uniswap/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol",
+        "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Pair.sol",
+        "./libraries/FixedPoint.sol",
+        "./libraries/UniswapV2OracleLibrary.sol",
         "./facades/ERC20Like.sol"
       ],
       "versionPragmas": [
@@ -110,10 +110,10 @@
         "PriceOracle"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol": {
-      "lastModificationDate": 1621128096603,
-      "contentHash": "3fa31c3860f2b9585c3a98c64850829e",
-      "sourceName": "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Pair.sol": {
+      "lastModificationDate": 1621200558563,
+      "contentHash": "e3404c5df9cee29b6efb31bd9c3dc767",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Pair.sol",
       "solcConfig": {
         "version": "0.6.12",
         "settings": {
@@ -144,10 +144,10 @@
         "IUniswapV2Pair"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@uniswap/lib/contracts/libraries/FixedPoint.sol": {
-      "lastModificationDate": 1621128106795,
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/libraries/FixedPoint.sol": {
+      "lastModificationDate": 1621219973474,
       "contentHash": "dc596f83d7c5841f61b8c8b244ff59e9",
-      "sourceName": "@uniswap/lib/contracts/libraries/FixedPoint.sol",
+      "sourceName": "contracts/libraries/FixedPoint.sol",
       "solcConfig": {
         "version": "0.6.12",
         "settings": {
@@ -178,10 +178,10 @@
         "FixedPoint"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@uniswap/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol": {
-      "lastModificationDate": 1621128101607,
-      "contentHash": "6375842b01002cf7b8f7899b01c5e8c8",
-      "sourceName": "@uniswap/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/libraries/UniswapV2OracleLibrary.sol": {
+      "lastModificationDate": 1621221553086,
+      "contentHash": "7211c0962fafdd7f94225917bd72d528",
+      "sourceName": "contracts/libraries/UniswapV2OracleLibrary.sol",
       "solcConfig": {
         "version": "0.6.12",
         "settings": {
@@ -205,8 +205,8 @@
         }
       },
       "imports": [
-        "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol",
-        "@uniswap/lib/contracts/libraries/FixedPoint.sol"
+        "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Pair.sol",
+        "./FixedPoint.sol"
       ],
       "versionPragmas": [
         ">=0.5.0"
@@ -215,9 +215,9 @@
         "UniswapV2OracleLibrary"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/RocketToken.sol": {
-      "lastModificationDate": 1621193509423,
-      "contentHash": "c029d9d3e6aa9b10b52aac2026dddb1c",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/RocketToken.sol": {
+      "lastModificationDate": 1621225987895,
+      "contentHash": "a86b76a92e89ec773db7780ff218f082",
       "sourceName": "contracts/RocketToken.sol",
       "solcConfig": {
         "version": "0.6.12",
@@ -247,9 +247,9 @@
         "@openzeppelin/contracts/math/SafeMath.sol",
         "@openzeppelin/contracts/utils/Address.sol",
         "@nomiclabs/buidler/console.sol",
-        "@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol",
-        "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol",
-        "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol",
+        "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Factory.sol",
+        "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Router02.sol",
+        "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Pair.sol",
         "@openzeppelin/contracts/access/Ownable.sol",
         "./facades/FeeApproverLike.sol",
         "./facades/LiquidVaultLike.sol"
@@ -261,9 +261,9 @@
         "RocketToken"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@openzeppelin/contracts/GSN/Context.sol": {
-      "lastModificationDate": 1621128096267,
-      "contentHash": "2adbd82f6d055a4751566d4671512b03",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@openzeppelin/contracts/GSN/Context.sol": {
+      "lastModificationDate": 1621187509913,
+      "contentHash": "a02aa4ae53018d92603a3ead2c365958",
       "sourceName": "@openzeppelin/contracts/GSN/Context.sol",
       "solcConfig": {
         "version": "0.6.12",
@@ -287,17 +287,17 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "../utils/Context.sol"
+      ],
       "versionPragmas": [
         ">=0.6.0 <0.8.0"
       ],
-      "artifacts": [
-        "Context"
-      ]
+      "artifacts": []
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
-      "lastModificationDate": 1621128097247,
-      "contentHash": "4d29a22b28b7ec0e89c3cdf1c5e72b83",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
+      "lastModificationDate": 1621187509923,
+      "contentHash": "e03e12206057e809eb76c5f681170c32",
       "sourceName": "@openzeppelin/contracts/math/SafeMath.sol",
       "solcConfig": {
         "version": "0.6.12",
@@ -329,9 +329,9 @@
         "SafeMath"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@openzeppelin/contracts/utils/Address.sol": {
-      "lastModificationDate": 1621128096212,
-      "contentHash": "72d77402f6854b7ccf9af282e805f292",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@openzeppelin/contracts/utils/Address.sol": {
+      "lastModificationDate": 1621187509923,
+      "contentHash": "7aa46886ff5abe7515496208a5e2ce5a",
       "sourceName": "@openzeppelin/contracts/utils/Address.sol",
       "solcConfig": {
         "version": "0.6.12",
@@ -363,8 +363,8 @@
         "Address"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@nomiclabs/buidler/console.sol": {
-      "lastModificationDate": 1621128100199,
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@nomiclabs/buidler/console.sol": {
+      "lastModificationDate": 1621187506423,
       "contentHash": "c20b2460755f312099ccd61427237ded",
       "sourceName": "@nomiclabs/buidler/console.sol",
       "solcConfig": {
@@ -397,10 +397,10 @@
         "console"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol": {
-      "lastModificationDate": 1621128096595,
-      "contentHash": "ec39b5372f4f4d52101b4da561e2aee6",
-      "sourceName": "@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Factory.sol": {
+      "lastModificationDate": 1621200558563,
+      "contentHash": "0a5bd6bbdc31200f32a18f5c8dff95cc",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Factory.sol",
       "solcConfig": {
         "version": "0.6.12",
         "settings": {
@@ -431,10 +431,10 @@
         "IUniswapV2Factory"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol": {
-      "lastModificationDate": 1621128101514,
-      "contentHash": "3fd36426274a5b35f7e702f87ba08a8e",
-      "sourceName": "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Router02.sol": {
+      "lastModificationDate": 1621200558563,
+      "contentHash": "98ad1653b7bdd2764eb8a93d2b44f585",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Router02.sol",
       "solcConfig": {
         "version": "0.6.12",
         "settings": {
@@ -467,9 +467,9 @@
         "IUniswapV2Router02"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
-      "lastModificationDate": 1621128097038,
-      "contentHash": "38c56382c57a9e9dab92cee051155870",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@openzeppelin/contracts/access/Ownable.sol": {
+      "lastModificationDate": 1621187509913,
+      "contentHash": "6748815a5b45c4aeeda56819f41190e0",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
         "version": "0.6.12",
@@ -494,7 +494,7 @@
         }
       },
       "imports": [
-        "../GSN/Context.sol"
+        "../utils/Context.sol"
       ],
       "versionPragmas": [
         ">=0.6.0 <0.8.0"
@@ -503,8 +503,8 @@
         "Ownable"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/facades/FeeApproverLike.sol": {
-      "lastModificationDate": 1621127690274,
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/facades/FeeApproverLike.sol": {
+      "lastModificationDate": 1621187496263,
       "contentHash": "0d5fed37c5a24e0cb24365bd1dda6ca0",
       "sourceName": "contracts/facades/FeeApproverLike.sol",
       "solcConfig": {
@@ -537,8 +537,8 @@
         "FeeApproverLike"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/facades/LiquidVaultLike.sol": {
-      "lastModificationDate": 1621127690274,
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/facades/LiquidVaultLike.sol": {
+      "lastModificationDate": 1621187496263,
       "contentHash": "2e27920908db0077dc8c703322e4914b",
       "sourceName": "contracts/facades/LiquidVaultLike.sol",
       "solcConfig": {
@@ -571,10 +571,44 @@
         "LiquidVaultLike"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router01.sol": {
-      "lastModificationDate": 1621128101497,
-      "contentHash": "95d8729b2c698dc663322167b3c085fe",
-      "sourceName": "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router01.sol",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@openzeppelin/contracts/utils/Context.sol": {
+      "lastModificationDate": 1621187509923,
+      "contentHash": "2adbd82f6d055a4751566d4671512b03",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Router01.sol": {
+      "lastModificationDate": 1621200558563,
+      "contentHash": "549cfea1ba0e1e5990817cd3a01c037d",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Router01.sol",
       "solcConfig": {
         "version": "0.6.12",
         "settings": {
@@ -605,9 +639,9 @@
         "IUniswapV2Router01"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/LiquidVault.sol": {
-      "lastModificationDate": 1621127690271,
-      "contentHash": "43aea790e9700f3ce6e1c0d87be7e834",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/LiquidVault.sol": {
+      "lastModificationDate": 1621222082258,
+      "contentHash": "66af266259771bff632220741fce37cf",
       "sourceName": "contracts/LiquidVault.sol",
       "solcConfig": {
         "version": "0.6.12",
@@ -636,11 +670,9 @@
         "@openzeppelin/contracts/math/SafeMath.sol",
         "@openzeppelin/contracts/token/ERC20/IERC20.sol",
         "./facades/FeeDistributorLike.sol",
-        "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol",
-        "@uniswap/v2-periphery/contracts/interfaces/IWETH.sol",
-        "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol",
-        "@uniswap/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol",
-        "./libraries/UniswapV2Library.sol",
+        "@ubeswap/core/contracts/uniswapv2/libraries/UniswapV2Library.sol",
+        "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Router02.sol",
+        "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Pair.sol",
         "abdk-libraries-solidity/ABDKMathQuad.sol",
         "./PriceOracle.sol"
       ],
@@ -651,8 +683,8 @@
         "LiquidVault"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/facades/FeeDistributorLike.sol": {
-      "lastModificationDate": 1621127690274,
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/facades/FeeDistributorLike.sol": {
+      "lastModificationDate": 1621187496263,
       "contentHash": "e8276f2aa7176123c8674363c9b4394a",
       "sourceName": "contracts/facades/FeeDistributorLike.sol",
       "solcConfig": {
@@ -685,44 +717,10 @@
         "FeeDistributorLike"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/@uniswap/v2-periphery/contracts/interfaces/IWETH.sol": {
-      "lastModificationDate": 1621128101526,
-      "contentHash": "270f2c1a1f22475259d5a2f6a524f72e",
-      "sourceName": "@uniswap/v2-periphery/contracts/interfaces/IWETH.sol",
-      "solcConfig": {
-        "version": "0.6.12",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.5.0"
-      ],
-      "artifacts": [
-        "IWETH"
-      ]
-    },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/libraries/UniswapV2Library.sol": {
-      "lastModificationDate": 1621127690278,
-      "contentHash": "6200b45c639c320e33df931718653f59",
-      "sourceName": "contracts/libraries/UniswapV2Library.sol",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/libraries/UniswapV2Library.sol": {
+      "lastModificationDate": 1621225556352,
+      "contentHash": "a9d241c7f7c758d4d31db2caf39e5af3",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/libraries/UniswapV2Library.sol",
       "solcConfig": {
         "version": "0.6.12",
         "settings": {
@@ -746,8 +744,9 @@
         }
       },
       "imports": [
-        "@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol",
-        "./SafeMath.sol"
+        "../interfaces/IUniswapV2Pair.sol",
+        "./SafeMath.sol",
+        "hardhat/console.sol"
       ],
       "versionPragmas": [
         ">=0.5.0"
@@ -756,8 +755,8 @@
         "UniswapV2Library"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/node_modules/abdk-libraries-solidity/ABDKMathQuad.sol": {
-      "lastModificationDate": 1621128093589,
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/abdk-libraries-solidity/ABDKMathQuad.sol": {
+      "lastModificationDate": 1621187506693,
       "contentHash": "0899b45f9de1f116599e7474e6742cd1",
       "sourceName": "abdk-libraries-solidity/ABDKMathQuad.sol",
       "solcConfig": {
@@ -790,10 +789,10 @@
         "ABDKMathQuad"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/libraries/SafeMath.sol": {
-      "lastModificationDate": 1621127690277,
-      "contentHash": "c9b46ef9c96fbede93bce431c89e00e4",
-      "sourceName": "contracts/libraries/SafeMath.sol",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/libraries/SafeMath.sol": {
+      "lastModificationDate": 1621200558563,
+      "contentHash": "4f75a45b7afd444778242f7cadc958ce",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/libraries/SafeMath.sol",
       "solcConfig": {
         "version": "0.6.12",
         "settings": {
@@ -818,15 +817,15 @@
       },
       "imports": [],
       "versionPragmas": [
-        ">=0.6.12"
+        "=0.6.12"
       ],
       "artifacts": [
         "SafeMathUniswap"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/FeeApprover.sol": {
-      "lastModificationDate": 1621193509420,
-      "contentHash": "6a02c3ffc4617aa79bfc9e6c30bf504a",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/FeeApprover.sol": {
+      "lastModificationDate": 1621205509009,
+      "contentHash": "d260e6766bf64f5039376d71b56e75c1",
       "sourceName": "contracts/FeeApprover.sol",
       "solcConfig": {
         "version": "0.6.12",
@@ -854,8 +853,8 @@
         "@openzeppelin/contracts/access/Ownable.sol",
         "@openzeppelin/contracts/math/SafeMath.sol",
         "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol",
-        "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol"
+        "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Factory.sol",
+        "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Router02.sol"
       ],
       "versionPragmas": [
         "=0.6.12"
@@ -864,8 +863,46 @@
         "FeeApprover"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/FeeDistributor.sol": {
-      "lastModificationDate": 1621127690271,
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+      "lastModificationDate": 1621187512543,
+      "contentHash": "8065b340476f61365c076897199425f1",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/Context.sol",
+        "./IERC20.sol",
+        "../../math/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        ">=0.6.0 <0.8.0"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/FeeDistributor.sol": {
+      "lastModificationDate": 1621187496263,
       "contentHash": "a0b318b02f5b74c0f55c1fdd8b86a825",
       "sourceName": "contracts/FeeDistributor.sol",
       "solcConfig": {
@@ -902,10 +939,10 @@
         "FeeDistributor"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/libraries/Math.sol": {
-      "lastModificationDate": 1621127690277,
-      "contentHash": "8df4c06a16c69b37b7b52d2d90e409cc",
-      "sourceName": "contracts/libraries/Math.sol",
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/utils/CeloFaker.sol": {
+      "lastModificationDate": 1621229083224,
+      "contentHash": "fab07ab0ba50e767f2b87d66d0753332",
+      "sourceName": "contracts/utils/CeloFaker.sol",
       "solcConfig": {
         "version": "0.6.12",
         "settings": {
@@ -928,84 +965,20 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+        "@ubeswap/core/contracts/uniswapv2/UniswapV2Factory.sol",
+        "@ubeswap/core/contracts/uniswapv2/UniswapV2Router02.sol"
+      ],
       "versionPragmas": [
-        ">=0.6.12"
+        "=0.6.12"
       ],
       "artifacts": [
-        "Math"
+        "CeloToken"
       ]
     },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/libraries/TransferHelper.sol": {
-      "lastModificationDate": 1621127690277,
-      "contentHash": "7799b643b2eace299776f96ed0cfb0dc",
-      "sourceName": "contracts/libraries/TransferHelper.sol",
-      "solcConfig": {
-        "version": "0.6.12",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.6.0"
-      ],
-      "artifacts": [
-        "TransferHelper"
-      ]
-    },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/libraries/UQ112x112.sol": {
-      "lastModificationDate": 1621127690277,
-      "contentHash": "3a1a4278a15ea0fdad1eff15a2c3badd",
-      "sourceName": "contracts/libraries/UQ112x112.sol",
-      "solcConfig": {
-        "version": "0.6.12",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.6.12"
-      ],
-      "artifacts": [
-        "UQ112x112"
-      ]
-    },
-    "/Users/aglamadrid19/Desktop/Projects/rock3t-core-contracts-main-prod/contracts/Migrations.sol": {
-      "lastModificationDate": 1621127690271,
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/contracts/Migrations.sol": {
+      "lastModificationDate": 1621187496263,
       "contentHash": "ba47da84d863ab46662e80d296abebd4",
       "sourceName": "contracts/Migrations.sol",
       "solcConfig": {
@@ -1036,6 +1009,365 @@
       ],
       "artifacts": [
         "Migrations"
+      ]
+    },
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/UniswapV2Router02.sol": {
+      "lastModificationDate": 1621200558543,
+      "contentHash": "98002c8c96d6c768dc332b2e8eaf56e1",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/UniswapV2Router02.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./libraries/UniswapV2Library.sol",
+        "./libraries/SafeMath.sol",
+        "./libraries/TransferHelper.sol",
+        "./interfaces/IUniswapV2Router02.sol",
+        "./interfaces/IUniswapV2Factory.sol",
+        "./interfaces/IERC20.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.12"
+      ],
+      "artifacts": [
+        "UniswapV2Router02"
+      ]
+    },
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/libraries/TransferHelper.sol": {
+      "lastModificationDate": 1621200558563,
+      "contentHash": "b312dfef05a1e7fdbade150348591bd0",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/libraries/TransferHelper.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.6.0"
+      ],
+      "artifacts": [
+        "TransferHelper"
+      ]
+    },
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/interfaces/IERC20.sol": {
+      "lastModificationDate": 1621200558563,
+      "contentHash": "8c1afff09b86ea5bbaaec5bbf96b139e",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/interfaces/IERC20.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IERC20Uniswap"
+      ]
+    },
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/UniswapV2Pair.sol": {
+      "lastModificationDate": 1621200558543,
+      "contentHash": "4a23a29bfc950a9293b774a0af639225",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/UniswapV2Pair.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./UniswapV2ERC20.sol",
+        "./libraries/Math.sol",
+        "./libraries/UQ112x112.sol",
+        "./interfaces/IERC20.sol",
+        "./interfaces/IUniswapV2Factory.sol",
+        "./interfaces/IUniswapV2Callee.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.12"
+      ],
+      "artifacts": [
+        "UniswapV2Pair"
+      ]
+    },
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/UniswapV2ERC20.sol": {
+      "lastModificationDate": 1621200558543,
+      "contentHash": "4c512f87af5a2963071724b49cf5b0e1",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/UniswapV2ERC20.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./libraries/SafeMath.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.12"
+      ],
+      "artifacts": [
+        "UniswapV2ERC20"
+      ]
+    },
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/libraries/Math.sol": {
+      "lastModificationDate": 1621200558563,
+      "contentHash": "baf379a423703ab9c461df6c94d3223b",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/libraries/Math.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.12"
+      ],
+      "artifacts": [
+        "Math"
+      ]
+    },
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/libraries/UQ112x112.sol": {
+      "lastModificationDate": 1621200558563,
+      "contentHash": "7283321879c861e2dab8c07e021b5e65",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/libraries/UQ112x112.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "=0.6.12"
+      ],
+      "artifacts": [
+        "UQ112x112"
+      ]
+    },
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Callee.sol": {
+      "lastModificationDate": 1621200558563,
+      "contentHash": "00942ffe58b056fbc493daa1f9f253ea",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Callee.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0"
+      ],
+      "artifacts": [
+        "IUniswapV2Callee"
+      ]
+    },
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/@ubeswap/core/contracts/uniswapv2/UniswapV2Factory.sol": {
+      "lastModificationDate": 1621200558543,
+      "contentHash": "a8d7d8b1fa7cf89194362cc895fca96b",
+      "sourceName": "@ubeswap/core/contracts/uniswapv2/UniswapV2Factory.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/IUniswapV2Factory.sol",
+        "./UniswapV2Pair.sol"
+      ],
+      "versionPragmas": [
+        "=0.6.12"
+      ],
+      "artifacts": [
+        "UniswapV2Factory"
+      ]
+    },
+    "/home/syta/Documents/repos/crypto/rock3t-core-contracts-main/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1621192970336,
+      "contentHash": "cc4777addd464ea56fa35b1c45df0591",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.6.12",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
       ]
     }
   }

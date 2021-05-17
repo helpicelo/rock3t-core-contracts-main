@@ -1,5 +1,5 @@
-const Ganache = require('../helpers/ganache');
-const deployUniswap = require('../helpers/deployUniswap');
+// const Ganache = require('../helpers/ganache');
+const deployUbeswap = require('../helpers/deployUbeswap');
 const { expectEvent, expectRevert, constants } = require("@openzeppelin/test-helpers");
 
 const RocketToken = artifacts.require('RocketToken');
@@ -8,8 +8,8 @@ const PriceOracle = artifacts.require('PriceOracle');
 const FeeApprover = artifacts.require('FeeApprover');
 
 contract('uniswap oracle', function(accounts) {
-  const ganache = new Ganache(web3);
-  afterEach('revert', ganache.revert);
+  // const ganache = new Ganache(web3);
+  // afterEach('revert', ganache.revert);
 
   const bn = (input) => web3.utils.toBN(input);
   const assertBNequal = (bnOne, bnTwo) => assert.equal(bnOne.toString(), bnTwo.toString());
@@ -62,7 +62,7 @@ contract('uniswap oracle', function(accounts) {
       {value: liquidityEtherAmount}
     );
 
-    await ganache.snapshot();
+    // await ganache.snapshot();
   });
   describe('oracle flow', () => {
     beforeEach('adds prices', async () => {

@@ -1,6 +1,6 @@
 
-const Ganache = require('../helpers/ganache');
-const deployUniswap = require('../helpers/deployUniswap');
+// const Ganache = require('../helpers/ganache');
+const deployUbeswap = require('../helpers/deployUbeswap');
 const { expectEvent, expectRevert } = require("@openzeppelin/test-helpers");
 
 const FeeDistributor = artifacts.require('FeeDistributor');
@@ -12,8 +12,8 @@ const PriceOracle = artifacts.require('PriceOracle');
 
 
 contract('liquid vault buy pressure', function(accounts) {
-  const ganache = new Ganache(web3);
-  afterEach('revert', ganache.revert);
+  // const ganache = new Ganache(web3);
+  // afterEach('revert', ganache.revert);
 
   const bn = (input) => web3.utils.toBN(input);
   const assertBNequal = (bnOne, bnTwo) => assert.equal(bnOne.toString(), bnTwo.toString());
@@ -35,8 +35,8 @@ contract('liquid vault buy pressure', function(accounts) {
   let liquidVault;
   let feeApprover
 
-  before('setup others', async function() {
-    const contracts = await deployUniswap(accounts);
+  beforeEach('setup others', async function() {
+    const contracts = await deployUbeswap(accounts);
     uniswapFactory = contracts.uniswapFactory;
     uniswapRouter = contracts.uniswapRouter;
     weth = contracts.weth;
@@ -47,7 +47,7 @@ contract('liquid vault buy pressure', function(accounts) {
     rocketToken = await RocketToken.new(feeDistributor.address, feeApprover.address, uniswapRouter.address, uniswapFactory.address);
     liquidVault = await LiquidVault.new();
 
-    await rocketToken.createUniswapPair();
+    await rocketToken.createUniswapPair(weth.address);
     uniswapPair = await rocketToken.tokenUniswapPair();
     uniswapOracle = await PriceOracle.new(uniswapPair, rocketToken.address, weth.address);
 
@@ -57,6 +57,7 @@ contract('liquid vault buy pressure', function(accounts) {
     await feeDistributor.seed(rocketToken.address, liquidVault.address, OWNER, 0);
 
     await liquidVault.seed(
+      weth.address,
       rocketToken.address,
       feeDistributor.address,
       uniswapRouter.address,
@@ -65,7 +66,7 @@ contract('liquid vault buy pressure', function(accounts) {
       uniswapOracle.address
     );
 
-    await ganache.snapshot();
+    // await ganache.snapshot();
   });
 
   it('should set default calibrations values after deploy', async () => {
@@ -122,8 +123,10 @@ contract('liquid vault buy pressure', function(accounts) {
 
     await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
 
-    await uniswapRouter.addLiquidityETH(
+    await uniswapRouter.addLiquidity(
+      weth.address,
       rocketToken.address,
+      liquidityEtherAmount,
       liquidityTokensAmount,
       0,
       0,
@@ -142,8 +145,10 @@ contract('liquid vault buy pressure', function(accounts) {
 
     await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
 
-    await uniswapRouter.addLiquidityETH(
+    await uniswapRouter.addLiquidity(
+      weth.address,
       rocketToken.address,
+      liquidityEtherAmount,
       liquidityTokensAmount,
       0,
       0,
@@ -162,8 +167,10 @@ contract('liquid vault buy pressure', function(accounts) {
 
     await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
 
-    await uniswapRouter.addLiquidityETH(
+    await uniswapRouter.addLiquidity(
+      weth.address,
       rocketToken.address,
+      liquidityEtherAmount,
       liquidityTokensAmount,
       0,
       0,
@@ -182,8 +189,10 @@ contract('liquid vault buy pressure', function(accounts) {
 
     await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
 
-    await uniswapRouter.addLiquidityETH(
+    await uniswapRouter.addLiquidity(
+      weth.address,
       rocketToken.address,
+      liquidityEtherAmount,
       liquidityTokensAmount,
       0,
       0,
@@ -208,8 +217,10 @@ contract('liquid vault buy pressure', function(accounts) {
 
     await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
 
-    await uniswapRouter.addLiquidityETH(
+    await uniswapRouter.addLiquidity(
+      weth.address,
       rocketToken.address,
+      liquidityEtherAmount,
       liquidityTokensAmount,
       0,
       0,
@@ -254,8 +265,10 @@ contract('liquid vault buy pressure', function(accounts) {
 
     await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
 
-    await uniswapRouter.addLiquidityETH(
+    await uniswapRouter.addLiquidity(
+      weth.address,
       rocketToken.address,
+      liquidityEtherAmount,
       liquidityTokensAmount,
       0,
       0,
@@ -300,8 +313,10 @@ contract('liquid vault buy pressure', function(accounts) {
 
     await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
 
-    await uniswapRouter.addLiquidityETH(
+    await uniswapRouter.addLiquidity(
+      weth.address,
       rocketToken.address,
+      liquidityEtherAmount,
       liquidityTokensAmount,
       0,
       0,

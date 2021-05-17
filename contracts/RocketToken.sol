@@ -10,9 +10,9 @@ import "@openzeppelin/contracts/utils/Address.sol";
 
 import "@nomiclabs/buidler/console.sol";
 
-import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol';
-import '@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol';
-import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
+import '@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Factory.sol';
+import '@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Router02.sol';
+import '@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Pair.sol';
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -104,10 +104,10 @@ contract RocketToken is Context, IERC20, Ownable {
 
     address public tokenUniswapPair;
 
-    function createUniswapPair() public onlyOwner returns (address) {
+    function createUniswapPair(IERC20 _token) public onlyOwner returns (address) {
         require(tokenUniswapPair == address(0), "Token: pool already created");
         tokenUniswapPair = uniswapFactory.createPair(
-            address(0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9),
+            address(_token),
             address(this)
         );
         return tokenUniswapPair;

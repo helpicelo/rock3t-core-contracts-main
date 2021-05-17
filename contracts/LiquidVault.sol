@@ -5,11 +5,12 @@ import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/math/SafeMath.sol';
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import './facades/FeeDistributorLike.sol';
-import '@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol';
-import '@uniswap/v2-periphery/contracts/interfaces/IWETH.sol';
-import '@uniswap/v2-core/contracts/interfaces/IUniswapV2Pair.sol';
-import '@uniswap/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol';
-import './libraries/UniswapV2Library.sol';
+// import '@uniswap/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol';
+import '@ubeswap/core/contracts/uniswapv2/libraries/UniswapV2Library.sol';
+
+import '@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Router02.sol';
+import '@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Pair.sol';
+
 import 'abdk-libraries-solidity/ABDKMathQuad.sol';
 import './PriceOracle.sol';
 
@@ -53,7 +54,7 @@ contract LiquidVault is Ownable {
         IUniswapV2Pair tokenPair;
         FeeDistributorLike feeDistributor;
         PriceOracle uniswapOracle;
-        IWETH weth;
+        IERC20 weth;
     }
 
     struct PurchaseLPVariables {
@@ -121,6 +122,7 @@ contract LiquidVault is Ownable {
     }
 
     function seed(
+        IERC20 weth, 
         IERC20 r3t,
         FeeDistributorLike _feeDistributor,
         IUniswapV2Router02 _uniswapRouter,
@@ -129,11 +131,11 @@ contract LiquidVault is Ownable {
         PriceOracle _uniswapOracle
     ) public onlyOwner {
         require(address(config.R3T) == address(0), 'Already initiated');
+        config.weth = weth;
         config.R3T = r3t;
         config.feeDistributor = _feeDistributor;
         config.tokenPair = _uniswapPair;
         config.uniswapRouter = _uniswapRouter;
-        config.weth = IWETH(0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9);
         treasury = _treasury;
         config.uniswapOracle = _uniswapOracle;
     }
@@ -182,7 +184,8 @@ contract LiquidVault is Ownable {
         uint balance = config.R3T.balanceOf(address(this));
         require(balance >= r3tRequired, 'R3T: insufficient R3T in LiquidVault');
 
-        config.weth.deposit{value: vars.netEth}();
+        // config.weth.deposit{value: vars.netEth}()
+        // config.weth.transfer(vars.netEth)
         address tokenPairAddress = address(config.tokenPair);
         config.weth.transfer(tokenPairAddress, vars.netEth);
         config.R3T.transfer(tokenPairAddress, r3tRequired);
@@ -195,7 +198,8 @@ contract LiquidVault is Ownable {
             path[0] = address(config.weth);
             path[1] = address(config.R3T);
 
-            config.uniswapRouter.swapExactETHForTokens{ value:vars.ethFee }(
+            config.uniswapRouter.swapExactTokensForTokens(
+                vars.ethFee,
                 0,
                 path,
                 address(this),
@@ -281,6 +285,7 @@ contract LiquidVault is Ownable {
         bytes16 floatTokenAmount = ABDKMathQuad.fromUInt(tokenAmount);
         bytes16 systemHealth = floatEtherAmount.mul(floatEtherAmount).div(floatTokenAmount);
 
+        // LMIN + LMAX_LMIN * 2**(sh/beta)
         return ABDKMathQuad.toUInt(
             ABDKMathQuad.add(
                 ABDKMathQuad.mul(

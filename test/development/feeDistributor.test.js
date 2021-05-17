@@ -1,15 +1,15 @@
-const Ganache = require('../helpers/ganache');
+// const Ganache = require('../helpers/ganache');
 const { expectEvent, expectRevert, constants } = require("@openzeppelin/test-helpers");
-const deployUniswap = require('../helpers/deployUniswap');
+const deployUniswap = require('../helpers/deployUbeswap');
 const FeeDistributor = artifacts.require('FeeDistributor');
 const RocketToken = artifacts.require('RocketToken');
 const FeeApprover = artifacts.require('FeeApprover');
 
 contract('fee distributor', accounts => {
-  const ganache = new Ganache(web3);
+  // const ganache = new Ganache(web3);
   const [ owner, liquidVault, secondary ] = accounts;
 
-  afterEach('revert', ganache.revert);
+  // afterEach('revert', ganache.revert);
 
   const bn = (input) => web3.utils.toBN(input);
   const assertBNequal = (bnOne, bnTwo) => assert.equal(bnOne.toString(), bnTwo.toString());
@@ -21,7 +21,8 @@ contract('fee distributor', accounts => {
   let uniswapFactory;
   let uniswapRouter;
 
-  before('setup others', async function() {
+
+  beforeEach('setup others', async function() {
     const contracts = await deployUniswap(accounts);
     uniswapFactory = contracts.uniswapFactory;
     uniswapRouter = contracts.uniswapRouter;
@@ -36,7 +37,7 @@ contract('fee distributor', accounts => {
     await feeApprover.unPause();
     await feeApprover.setFeeMultiplier(0);
 
-    await ganache.snapshot();
+    // await ganache.snapshot();
   });
 
   it('should fail to distribute fees without seed() function', async () => {

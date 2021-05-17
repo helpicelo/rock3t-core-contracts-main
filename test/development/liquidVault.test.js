@@ -1,4 +1,4 @@
-const Ganache = require('../helpers/ganache');
+// const Ganache = require('../helpers/ganache');
 const deployUniswap = require('../helpers/deployUniswap.js');
 const { expectEvent, expectRevert, constants } = require("@openzeppelin/test-helpers");
 
@@ -10,8 +10,8 @@ const FeeApprover = artifacts.require('FeeApprover');
 const PriceOracle = artifacts.require('PriceOracle');
 
 contract('liquid vault', function(accounts) {
-  const ganache = new Ganache(web3);
-  afterEach('revert', ganache.revert);
+  // const ganache = new Ganache(web3);
+  // afterEach('revert', ganache.revert);
 
   const bn = (input) => web3.utils.toBN(input);
   const assertBNequal = (bnOne, bnTwo) => assert.equal(bnOne.toString(), bnTwo.toString());
@@ -34,7 +34,7 @@ contract('liquid vault', function(accounts) {
   let rocketToken;
   let liquidVault;
 
-  before('setup others', async function() {
+  beforeEach('setup others', async function() {
     const contracts = await deployUniswap(accounts);
     uniswapFactory = contracts.uniswapFactory;
     uniswapRouter = contracts.uniswapRouter;
@@ -65,7 +65,7 @@ contract('liquid vault', function(accounts) {
       uniswapOracle.address
     );
 
-    await ganache.snapshot();
+    // await ganache.snapshot();
   });
 
   describe('General tests', async () => {

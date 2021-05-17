@@ -1,5 +1,5 @@
-const Ganache = require('../helpers/ganache');
-const deployUniswap = require('../helpers/deployUniswap');
+// const Ganache = require('../helpers/ganache');
+const deployUniswap = require('../helpers/deployUbeswap');
 const { expectRevert } = require("@openzeppelin/test-helpers");
 
 const FeeDistributor = artifacts.require('FeeDistributor');
@@ -10,8 +10,8 @@ const FeeApprover = artifacts.require('FeeApprover');
 
 
 contract('liquid vault', function(accounts) {
-  const ganache = new Ganache(web3);
-  afterEach('revert', ganache.revert);
+  // const ganache = new Ganache(web3);
+  // afterEach('revert', ganache.revert);
 
   const bn = (input) => web3.utils.toBN(input);
   const assertBNequal = (bnOne, bnTwo) => assert.equal(bnOne.toString(), bnTwo.toString());
@@ -30,7 +30,7 @@ contract('liquid vault', function(accounts) {
   let rocketToken;
   let liquidVault;
 
-  before('setup others', async function() {
+  beforeEach('setup others', async function() {
     const contracts = await deployUniswap(accounts);
     uniswapFactory = contracts.uniswapFactory;
     uniswapRouter = contracts.uniswapRouter;
@@ -60,7 +60,7 @@ contract('liquid vault', function(accounts) {
       NOT_OWNER
     );
 
-    await ganache.snapshot();
+    // await ganache.snapshot();
   });
 
   describe('lock period calculations', async () => {

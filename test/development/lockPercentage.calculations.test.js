@@ -1,5 +1,5 @@
-const Ganache = require('../helpers/ganache');
-const deployUniswap = require('../helpers/deployUniswap');
+// const Ganache = require('../helpers/ganache');
+const deployUbeswap = require('../helpers/deployUbeswap');
 
 const FeeDistributor = artifacts.require('FeeDistributor');
 const RocketToken = artifacts.require('RocketToken');
@@ -9,8 +9,8 @@ const FeeApprover = artifacts.require('FeeApprover');
 const PriceOracle = artifacts.require('PriceOracle');
 
 contract('liquid vault', function(accounts) {
-  const ganache = new Ganache(web3);
-  afterEach('revert', ganache.revert);
+  // const ganache = new Ganache(web3);
+  // afterEach('revert', ganache.revert);
 
   const bn = (input) => web3.utils.toBN(input);
   const assertBNequal = (bnOne, bnTwo) => assert.equal(bnOne.toString(), bnTwo.toString());
@@ -30,8 +30,8 @@ contract('liquid vault', function(accounts) {
   let rocketToken;
   let liquidVault;
 
-  before('setup others', async function() {
-    const contracts = await deployUniswap(accounts);
+  beforeEach('setup others', async function() {
+    const contracts = await deployUbeswap(accounts);
     uniswapFactory = contracts.uniswapFactory;
     uniswapRouter = contracts.uniswapRouter;
     weth = contracts.weth;
@@ -40,10 +40,12 @@ contract('liquid vault', function(accounts) {
     feeApprover = await FeeApprover.new();
     feeDistributor = await FeeDistributor.new();
     rocketToken = await RocketToken.new(feeDistributor.address, feeApprover.address, uniswapRouter.address, uniswapFactory.address);
+    console.log("rocket", rocketToken.address)
     liquidVault = await LiquidVault.new();
 
-    await rocketToken.createUniswapPair();
+    await rocketToken.createUniswapPair(weth.address);
     uniswapPair = await rocketToken.tokenUniswapPair();
+    console.log("addr pair 2",uniswapPair)
     uniswapOracle = await PriceOracle.new(uniswapPair, rocketToken.address, weth.address);
 
     await feeApprover.initialize(uniswapPair, liquidVault.address);
@@ -53,6 +55,7 @@ contract('liquid vault', function(accounts) {
     await feeDistributor.seed(rocketToken.address, liquidVault.address, OWNER, 0);
 
     await liquidVault.seed(
+      weth.address,
       rocketToken.address,
       feeDistributor.address,
       uniswapRouter.address,
@@ -65,17 +68,18 @@ contract('liquid vault', function(accounts) {
     const liquidityEtherAmount = bn('1000').mul(baseUnit);
 
     await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
-    await uniswapRouter.addLiquidityETH(
+    await uniswapRouter.addLiquidity(
+      weth.address,
       rocketToken.address,
+      liquidityEtherAmount,
       liquidityTokensAmount,
       0,
       0,
       OWNER,
       new Date().getTime() + 3000,
-      {value: liquidityEtherAmount}
     );
 
-    await ganache.snapshot();
+    // await ganache.snapshot();
   });
 
   describe('lock percentage calculations', async () => {
@@ -86,7 +90,8 @@ contract('liquid vault', function(accounts) {
       await uniswapOracle.update();
 
       const blockTimestamp = Number(previousBlockTimestamp) + 23 * 3600
-      await ganache.setTime(blockTimestamp.toString());
+      // await ganache.setTime();
+      await network.provider.send("evm_setNextBlockTimestamp", [blockTimestamp.toString()])
 
       await uniswapOracle.update();
     });
