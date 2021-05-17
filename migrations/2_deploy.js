@@ -8,9 +8,9 @@ const LiquidVault = artifacts.require('LiquidVault');
 const PriceOracle = artifacts.require('PriceOracle');
 
 const IUniswapV2Pair = artifacts.require('IUniswapV2Pair');
-const UniswapFactory = artifacts.require('UniswapFactory');
+// const UniswapFactory = artifacts.require('UniswapFactory');
 // const UniswapWETH = artifacts.require('UniswapWETH');
-const UniswapRouter = artifacts.require('UniswapRouter');
+const UniswapRouter = artifacts.require('UniswapV2Router02');
 
 const { 
     UBESWAP_FACTORY, 
@@ -32,11 +32,11 @@ module.exports = async function (deployer, network, accounts) {
     }
 
     const UniswapRouterInstance = await UniswapRouter.at("0xE3D8bd6Aed4F159bc8000a9cD47CffDb95F96121");
-    await pausePromise('Ubeswap Router');
+    await pausePromise('Ubeswap Router at:', UniswapRouterInstance.address);
 
     await deployer.deploy(FeeApprover);
     const feeApproverInstance = await FeeApprover.deployed();
-    await pausePromise('Fee Approver');
+    await pausePromise('Fee Approver deployed at:', feeApproverInstance.address);
 
     await deployer.deploy(FeeDistributor);
     const feeDistributorInstance = await FeeDistributor.deployed();
@@ -56,7 +56,7 @@ module.exports = async function (deployer, network, accounts) {
     await pausePromise('seed fee approver');
     // create uniswap pair manually on production and initialize/unpause fee approver
     if (network !== 'mainnet') {
-        await rocketTokenInstance.createUniswapPair();
+        await rocketTokenInstance.createUniswapPair(CELO_ADDRESS);
         uniswapPair = await rocketTokenInstance.tokenUniswapPair();
 
         uniswapOracle = await deployer.deploy(PriceOracle, uniswapPair, rocketTokenInstance.address, CELO_ADDRESS);
@@ -75,6 +75,7 @@ module.exports = async function (deployer, network, accounts) {
     );
     await pausePromise('seed liquidity vault');
     await liquidVaultInstance.seed(
+      CELO_ADDRESS,
       rocketTokenInstance.address,
       feeDistributorInstance.address,
       UBESWAP_ROUTER,
@@ -88,23 +89,24 @@ module.exports = async function (deployer, network, accounts) {
     await rocketTokenInstance.transfer(liquidVaultInstance.address, web3.utils.toWei(amount))
 
     
-    // const liquidityTokensAmount = bn('10000').mul(baseUnit); // 10.000 tokens
-    // const liquidityEtherAmount = bn('5').mul(baseUnit); // 5 ETH
+    const liquidityTokensAmount = web3.utils.toWei('10000')// bn('10000').mul(baseUnit); // 10.000 tokens
+    const liquidityEtherAmount = web3.utils.toWei('5') //bn('5').mul(baseUnit); // 5 ETH
     await pausePromise('should be possible to add liquidity on pair');
     const pair = await IUniswapV2Pair.at(uniswapPair);
     const reservesBefore = await pair.getReserves();
 
     await rocketTokenInstance.approve(UBESWAP_ROUTER, web3.utils.toWei("11000000"));
-    await  
+    // await  
 
-    await UniswapRouterInstance.addLiquidityETH(
+    await UniswapRouterInstance.addLiquidity(
+        CELO_ADDRESS,
         rocketTokenInstance.address,
+        liquidityEtherAmount,
         liquidityTokensAmount,
         0,
         0,
-        OWNER,
+        DEV_ACCOUNT,
         new Date().getTime() + 3000,
-        {value: liquidityEtherAmount}
     );
   
     // const reservesAfter = await pair.getReserves();
