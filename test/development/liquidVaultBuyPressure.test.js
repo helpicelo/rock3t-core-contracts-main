@@ -1,5 +1,4 @@
 
-// const Ganache = require('../helpers/ganache');
 const deployUbeswap = require('../helpers/deployUbeswap');
 const { expectEvent, expectRevert } = require("@openzeppelin/test-helpers");
 
@@ -12,8 +11,6 @@ const PriceOracle = artifacts.require('PriceOracle');
 
 
 contract('liquid vault buy pressure', function(accounts) {
-  // const ganache = new Ganache(web3);
-  // afterEach('revert', ganache.revert);
 
   const bn = (input) => web3.utils.toBN(input);
   const assertBNequal = (bnOne, bnTwo) => assert.equal(bnOne.toString(), bnTwo.toString());
@@ -66,7 +63,6 @@ contract('liquid vault buy pressure', function(accounts) {
       uniswapOracle.address
     );
 
-    // await ganache.snapshot();
   });
 
   it('should set default calibrations values after deploy', async () => {
@@ -122,7 +118,7 @@ contract('liquid vault buy pressure', function(accounts) {
     const liquidityEtherAmount = bn('10').mul(baseUnit); // 10 ETH
 
     await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
-
+    
     await uniswapRouter.addLiquidity(
       weth.address,
       rocketToken.address,
@@ -131,8 +127,7 @@ contract('liquid vault buy pressure', function(accounts) {
       0,
       0,
       OWNER,
-      new Date().getTime() + 3000,
-      {value: liquidityEtherAmount}
+      new Date().getTime() + 3000
     );
 
     const fee = await liquidVault.feeUINT();
@@ -153,8 +148,7 @@ contract('liquid vault buy pressure', function(accounts) {
       0,
       0,
       OWNER,
-      new Date().getTime() + 3000,
-      {value: liquidityEtherAmount}
+      new Date().getTime() + 3000
     );
 
     const fee = await liquidVault.feeUINT();
@@ -175,8 +169,7 @@ contract('liquid vault buy pressure', function(accounts) {
       0,
       0,
       OWNER,
-      new Date().getTime() + 3000,
-      {value: liquidityEtherAmount}
+      new Date().getTime() + 3000
     );
 
     const fee = await liquidVault.feeUINT();
@@ -197,8 +190,7 @@ contract('liquid vault buy pressure', function(accounts) {
       0,
       0,
       OWNER,
-      new Date().getTime() + 3000,
-      {value: liquidityEtherAmount}
+      new Date().getTime() + 3000
     );
 
     const fee = await liquidVault.feeUINT();
@@ -225,8 +217,7 @@ contract('liquid vault buy pressure', function(accounts) {
       0,
       0,
       OWNER,
-      new Date().getTime() + 3000,
-      {value: liquidityEtherAmount}
+      new Date().getTime() + 3000
     );
 
     const amount = bn('890000').mul(baseUnit);
@@ -234,7 +225,7 @@ contract('liquid vault buy pressure', function(accounts) {
 
     const balanceBefore = await rocketToken.balanceOf(liquidVault.address);
 
-    const result = await liquidVault.purchaseLP({ value: '10000' });
+    const result = await liquidVault.purchaseLP('10000');
     const expectedLockPeriod = await liquidVault.getLockedPeriod();
 
     expectEvent(result, 'LPQueued', {
@@ -273,8 +264,7 @@ contract('liquid vault buy pressure', function(accounts) {
       0,
       0,
       OWNER,
-      new Date().getTime() + 3000,
-      {value: liquidityEtherAmount}
+      new Date().getTime() + 3000
     );
 
     const amount = bn('890000').mul(baseUnit);
@@ -282,7 +272,7 @@ contract('liquid vault buy pressure', function(accounts) {
 
     const balanceBefore = await rocketToken.balanceOf(liquidVault.address);
 
-    const result = await liquidVault.purchaseLP({ value: '10000' });
+    const result = await liquidVault.purchaseLP('10000');
     const expectedLockPeriod = await liquidVault.getLockedPeriod();
 
     expectEvent(result, 'LPQueued', {
@@ -321,8 +311,7 @@ contract('liquid vault buy pressure', function(accounts) {
       0,
       0,
       OWNER,
-      new Date().getTime() + 3000,
-      {value: liquidityEtherAmount}
+      new Date().getTime() + 3000
     );
 
     const amount = bn('890000').mul(baseUnit);
@@ -330,7 +319,7 @@ contract('liquid vault buy pressure', function(accounts) {
 
     const balanceBefore = await rocketToken.balanceOf(liquidVault.address);
 
-    const result = await liquidVault.purchaseLP({ value: '10000' });
+    const result = await liquidVault.purchaseLP('10000');
     const expectedLockPeriod = await liquidVault.getLockedPeriod();
 
     expectEvent(result, 'LPQueued', {

@@ -30,7 +30,7 @@ contract('uniswap oracle', function(accounts) {
   let feeApprover;
 
   before('setup others', async function() {
-    const contracts = await deployUniswap(accounts);
+    const contracts = await deployUbeswap(accounts);
     uniswapFactory = contracts.uniswapFactory;
     uniswapRouter = contracts.uniswapRouter;
     weth = contracts.weth;
@@ -39,7 +39,7 @@ contract('uniswap oracle', function(accounts) {
     feeApprover = await FeeApprover.new();
     rocketToken = await RocketToken.new(feeReceiver, feeApprover.address, uniswapRouter.address, uniswapFactory.address);
 
-    await rocketToken.createUniswapPair();
+    await rocketToken.createUniswapPair(weth.address);
     uniswapPair = await rocketToken.tokenUniswapPair();
 
     uniswapOracle = await PriceOracle.new(uniswapPair, rocketToken.address, weth.address);
@@ -52,14 +52,15 @@ contract('uniswap oracle', function(accounts) {
     const liquidityEtherAmount = bn('5').mul(baseUnit);
 
     await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
-    await uniswapRouter.addLiquidityETH(
+    await uniswapRouter.addLiquidity(
+      weth.address,
       rocketToken.address,
+      liquidityEtherAmount,
       liquidityTokensAmount,
       0,
       0,
       OWNER,
       new Date().getTime() + 3000,
-      {value: liquidityEtherAmount}
     );
 
     // await ganache.snapshot();
@@ -72,7 +73,7 @@ contract('uniswap oracle', function(accounts) {
       await uniswapOracle.update()
 
       const blockTimestamp = Number(previousBlockTimestamp) + 7 * 1800;
-      await ganache.setTime(blockTimestamp.toString());
+      await network.provider.send("evm_setNextBlockTimestamp", [blockTimestamp])
     });
 
     it('updates & consults R3T price', async () => {

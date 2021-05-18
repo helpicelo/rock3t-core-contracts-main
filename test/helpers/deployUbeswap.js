@@ -10,16 +10,18 @@ async function deployUniswap(accounts) {
 
   const feeSetter = accounts[0];
   const ubeswapFactory = await UbeswapFactory.new(feeSetter);
-  const celo = await UbeswapCELO.deployed();
-  const celoAmount = bn('10000').mul(baseUnit); // 1.000 tokens
+  const celo = await UbeswapCELO.new();
 
-  // celo.transfer(accounts[0], celoAmount);
-  // console.log((await celo.balanceOf(ac).toString())
-  accounts.forEach(async a => console.log((await celo.balanceOf(a)).toString()))
-  // console.log(JSON.stringify(UbeswapRouter.new))
-  // console.log("celo", celo.address)
-  // console.log("fac.js", ubeswapFactory.address)
+  // recharge accounts[0] with celos
+  await celo.mint(accounts[0], web3.utils.toWei('10000000000'))
+
+  // console.log("celo minted", (await celo.balanceOf(accounts[0])).toString())
+
   const uniswapRouter = await UbeswapRouter.new(ubeswapFactory.address);
+
+  // approve celo implicit
+  await celo.approve(uniswapRouter.address, web3.utils.toWei("1000000000000000000"));
+  await celo.approve(ubeswapFactory.address, web3.utils.toWei("1000000000000000000"));
 
   return { uniswapFactory: ubeswapFactory, weth: celo, uniswapRouter };
 }

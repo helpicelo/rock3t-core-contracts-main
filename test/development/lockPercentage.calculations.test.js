@@ -1,4 +1,3 @@
-// const Ganache = require('../helpers/ganache');
 const deployUbeswap = require('../helpers/deployUbeswap');
 
 const FeeDistributor = artifacts.require('FeeDistributor');
@@ -9,9 +8,6 @@ const FeeApprover = artifacts.require('FeeApprover');
 const PriceOracle = artifacts.require('PriceOracle');
 
 contract('liquid vault', function(accounts) {
-  // const ganache = new Ganache(web3);
-  // afterEach('revert', ganache.revert);
-
   const bn = (input) => web3.utils.toBN(input);
   const assertBNequal = (bnOne, bnTwo) => assert.equal(bnOne.toString(), bnTwo.toString());
 
@@ -79,7 +75,6 @@ contract('liquid vault', function(accounts) {
       new Date().getTime() + 3000,
     );
 
-    // await ganache.snapshot();
   });
 
   describe('lock percentage calculations', async () => {
@@ -90,8 +85,7 @@ contract('liquid vault', function(accounts) {
       await uniswapOracle.update();
 
       const blockTimestamp = Number(previousBlockTimestamp) + 23 * 3600
-      // await ganache.setTime();
-      await network.provider.send("evm_setNextBlockTimestamp", [blockTimestamp.toString()])
+      await network.provider.send("evm_setNextBlockTimestamp", [blockTimestamp])
 
       await uniswapOracle.update();
     });

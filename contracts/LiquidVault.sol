@@ -1,18 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity = 0.6.12;
+
 pragma experimental ABIEncoderV2;
 import '@openzeppelin/contracts/access/Ownable.sol';
 import '@openzeppelin/contracts/math/SafeMath.sol';
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import './facades/FeeDistributorLike.sol';
-// import '@uniswap/v2-periphery/contracts/libraries/UniswapV2OracleLibrary.sol';
-import '@ubeswap/core/contracts/uniswapv2/libraries/UniswapV2Library.sol';
+import './libraries/UniswapV2Library.sol';
 
 import '@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Router02.sol';
 import '@ubeswap/core/contracts/uniswapv2/interfaces/IUniswapV2Pair.sol';
 
 import 'abdk-libraries-solidity/ABDKMathQuad.sol';
 import './PriceOracle.sol';
+// import "hardhat/console.sol";
+
 
 contract LiquidVault is Ownable {
     using SafeMath for uint;
@@ -156,13 +158,13 @@ contract LiquidVault is Ownable {
 
     // splits the amount of ETH according to a buy pressure formula, swaps the splitted fee, 
     // and pools the remaining ETH with R3T to create LP tokens
-    function purchaseLPFor(address beneficiary) public payable lock {
-        require(msg.value > 0, 'R3T: eth required to mint R3T LP');
+    function purchaseLPFor(address beneficiary, uint256 amount) public payable lock {
+        require(amount > 0, 'R3T: eth required to mint R3T LP');
         config.feeDistributor.distributeFees();
         PurchaseLPVariables memory vars;
         uint ethFeePercentage = feeUINT();
-        vars.ethFee = msg.value.mul(ethFeePercentage).div(1000);
-        vars.netEth = msg.value.sub(vars.ethFee);
+        vars.ethFee = amount.mul(ethFeePercentage).div(1000);
+        vars.netEth = amount.sub(vars.ethFee);
 
         (vars.reserve1, vars.reserve2, ) = config.tokenPair.getReserves();
 
@@ -185,10 +187,11 @@ contract LiquidVault is Ownable {
         require(balance >= r3tRequired, 'R3T: insufficient R3T in LiquidVault');
 
         // config.weth.deposit{value: vars.netEth}()
-        // config.weth.transfer(vars.netEth)
+        // console.log(vars.netEth, config.weth.balanceOf(msg.sender));
+        // config.weth.transfer(msg.sender, vars.netEth);
         address tokenPairAddress = address(config.tokenPair);
-        config.weth.transfer(tokenPairAddress, vars.netEth);
         config.R3T.transfer(tokenPairAddress, r3tRequired);
+        config.weth.transfer(tokenPairAddress, vars.netEth);
         config.uniswapOracle.update();
 
         uint liquidityCreated = config.tokenPair.mint(address(this));
@@ -227,8 +230,8 @@ contract LiquidVault is Ownable {
     }
 
     // send ETH to match with R3T tokens in LiquidVault
-    function purchaseLP() public payable {
-        purchaseLPFor(msg.sender);
+    function purchaseLP(uint256 amount) public payable {
+        purchaseLPFor(msg.sender, amount);
     }
 
     // claimps the oldest LP batch according to the lock period formula

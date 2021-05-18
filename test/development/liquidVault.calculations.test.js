@@ -1,5 +1,4 @@
-// const Ganache = require('../helpers/ganache');
-const deployUniswap = require('../helpers/deployUbeswap');
+const deployUbeswap = require('../helpers/deployUbeswap');
 const { expectRevert } = require("@openzeppelin/test-helpers");
 
 const FeeDistributor = artifacts.require('FeeDistributor');
@@ -10,9 +9,6 @@ const FeeApprover = artifacts.require('FeeApprover');
 
 
 contract('liquid vault', function(accounts) {
-  // const ganache = new Ganache(web3);
-  // afterEach('revert', ganache.revert);
-
   const bn = (input) => web3.utils.toBN(input);
   const assertBNequal = (bnOne, bnTwo) => assert.equal(bnOne.toString(), bnTwo.toString());
 
@@ -31,7 +27,7 @@ contract('liquid vault', function(accounts) {
   let liquidVault;
 
   beforeEach('setup others', async function() {
-    const contracts = await deployUniswap(accounts);
+    const contracts = await deployUbeswap(accounts);
     uniswapFactory = contracts.uniswapFactory;
     uniswapRouter = contracts.uniswapRouter;
     weth = contracts.weth;
@@ -42,7 +38,7 @@ contract('liquid vault', function(accounts) {
     rocketToken = await RocketToken.new(feeDistributor.address, feeApprover.address, uniswapRouter.address, uniswapFactory.address);
     liquidVault = await LiquidVault.new();
 
-    await rocketToken.createUniswapPair();
+    await rocketToken.createUniswapPair(weth.address);
     uniswapPair = await rocketToken.tokenUniswapPair();
 
     await feeApprover.initialize(uniswapPair, liquidVault.address);
@@ -52,6 +48,7 @@ contract('liquid vault', function(accounts) {
     await feeDistributor.seed(rocketToken.address, liquidVault.address, OWNER, 0);
 
     await liquidVault.seed(
+      weth.address,
       rocketToken.address,
       feeDistributor.address,
       uniswapRouter.address,
@@ -59,8 +56,6 @@ contract('liquid vault', function(accounts) {
       treasury,
       NOT_OWNER
     );
-
-    // await ganache.snapshot();
   });
 
   describe('lock period calculations', async () => {
@@ -83,14 +78,15 @@ contract('liquid vault', function(accounts) {
       assertBNequal(reservesBefore[1], 0);
 
       await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
-      await uniswapRouter.addLiquidityETH(
+      await uniswapRouter.addLiquidity(
+        weth.address,
         rocketToken.address,
+        liquidityEtherAmount,
         liquidityTokensAmount,
         0,
         0,
         OWNER,
         new Date().getTime() + 3000,
-        {value: liquidityEtherAmount}
       );
 
       const res = await liquidVault.getLockedPeriod();
@@ -109,14 +105,15 @@ contract('liquid vault', function(accounts) {
       assertBNequal(reservesBefore[1], 0);
 
       await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
-      await uniswapRouter.addLiquidityETH(
+      await uniswapRouter.addLiquidity(
+        weth.address,
         rocketToken.address,
+        liquidityEtherAmount,
         liquidityTokensAmount,
         0,
         0,
         OWNER,
         new Date().getTime() + 3000,
-        {value: liquidityEtherAmount}
       );
 
       const res = await liquidVault.getLockedPeriod();
@@ -135,14 +132,15 @@ contract('liquid vault', function(accounts) {
       assertBNequal(reservesBefore[1], 0);
 
       await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
-      await uniswapRouter.addLiquidityETH(
+      await uniswapRouter.addLiquidity(
+        weth.address,
         rocketToken.address,
+        liquidityEtherAmount,
         liquidityTokensAmount,
         0,
         0,
         OWNER,
         new Date().getTime() + 3000,
-        {value: liquidityEtherAmount}
       );
 
       const res = await liquidVault.getLockedPeriod();
@@ -161,14 +159,15 @@ contract('liquid vault', function(accounts) {
       assertBNequal(reservesBefore[1], 0);
 
       await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
-      await uniswapRouter.addLiquidityETH(
+      await uniswapRouter.addLiquidity(
+        weth.address,
         rocketToken.address,
+        liquidityEtherAmount,
         liquidityTokensAmount,
         0,
         0,
         OWNER,
         new Date().getTime() + 3000,
-        {value: liquidityEtherAmount}
       );
 
       const res = await liquidVault.getLockedPeriod();
@@ -187,14 +186,15 @@ contract('liquid vault', function(accounts) {
       assertBNequal(reservesBefore[1], 0);
 
       await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
-      await uniswapRouter.addLiquidityETH(
+      await uniswapRouter.addLiquidity(
+        weth.address,
         rocketToken.address,
+        liquidityEtherAmount,
         liquidityTokensAmount,
         0,
         0,
         OWNER,
         new Date().getTime() + 3000,
-        {value: liquidityEtherAmount}
       );
 
       const res = await liquidVault.getLockedPeriod();
@@ -213,14 +213,15 @@ contract('liquid vault', function(accounts) {
       assertBNequal(reservesBefore[1], 0);
 
       await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
-      await uniswapRouter.addLiquidityETH(
+      await uniswapRouter.addLiquidity(
+        weth.address,
         rocketToken.address,
+        liquidityEtherAmount,
         liquidityTokensAmount,
         0,
         0,
         OWNER,
         new Date().getTime() + 3000,
-        {value: liquidityEtherAmount}
       );
 
       const res = await liquidVault.getLockedPeriod();
@@ -239,14 +240,15 @@ contract('liquid vault', function(accounts) {
       assertBNequal(reservesBefore[1], 0);
 
       await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
-      await uniswapRouter.addLiquidityETH(
+      await uniswapRouter.addLiquidity(
+        weth.address,
         rocketToken.address,
+        liquidityEtherAmount,
         liquidityTokensAmount,
         0,
         0,
         OWNER,
         new Date().getTime() + 3000,
-        {value: liquidityEtherAmount}
       );
 
       const res = await liquidVault.getLockedPeriod();
@@ -265,14 +267,15 @@ contract('liquid vault', function(accounts) {
       assertBNequal(reservesBefore[1], 0);
 
       await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
-      await uniswapRouter.addLiquidityETH(
+      await uniswapRouter.addLiquidity(
+        weth.address,
         rocketToken.address,
+        liquidityEtherAmount,
         liquidityTokensAmount,
         0,
         0,
         OWNER,
         new Date().getTime() + 3000,
-        {value: liquidityEtherAmount}
       );
 
       const res = await liquidVault.getLockedPeriod();
@@ -305,14 +308,15 @@ contract('liquid vault', function(accounts) {
       const pair = await IUniswapV2Pair.at(uniswapPair);
 
       await rocketToken.approve(uniswapRouter.address, liquidityTokensAmount);
-      await uniswapRouter.addLiquidityETH(
+      await uniswapRouter.addLiquidity(
+        weth.address,
         rocketToken.address,
+        liquidityEtherAmount,
         liquidityTokensAmount,
         0,
         0,
         OWNER,
         new Date().getTime() + 3000,
-        {value: liquidityEtherAmount}
       );
 
       assertBNequal(await liquidVault.getLockedPeriod(), '86400');

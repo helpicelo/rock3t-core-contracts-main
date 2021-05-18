@@ -1,16 +1,12 @@
-const Ganache = require('../helpers/ganache.js');
-const deployUniswap = require('../helpers/deployUniswap.js');
+const deployUbeswap = require('../helpers/deployUbeswap.js');
 const { expectEvent, expectRevert, constants } = require("@openzeppelin/test-helpers");
 
 const RocketToken = artifacts.require('RocketToken');
 const FeeApprover = artifacts.require('FeeApprover');
 
 contract('rocket token', accounts => {
-  const ganache = new Ganache(web3);
   const [ owner, feeDestination, notOwner, liquidVault, uniswapPair] = accounts;
   const { ZERO_ADDRESS } = constants;
-
-  afterEach('revert', ganache.revert);
 
   const assertBNequal = (bnOne, bnTwo) => assert.equal(bnOne.toString(), bnTwo.toString());
 
@@ -20,41 +16,40 @@ contract('rocket token', accounts => {
   let rocketToken;
   let feeApprover;
 
-  before('setup others', async function() {
-    const contracts = await deployUniswap(accounts);
+  beforeEach('setup others', async function() {
+    const contracts = await deployUbeswap(accounts);
     uniswapFactory = contracts.uniswapFactory;
     uniswapRouter = contracts.uniswapRouter;
+    weth = contracts.weth;
 
     feeApprover = await FeeApprover.new();
     rocketToken = await RocketToken.new(feeDestination, feeApprover.address, uniswapRouter.address, uniswapFactory.address);
 
     await feeApprover.initialize(uniswapPair, liquidVault);
     await feeApprover.unPause();
-
-    await ganache.snapshot();
   });
 
   it('should create a uniswap pair', async () => {
       const pairAddressBefore = await rocketToken.tokenUniswapPair.call();
       assert.equal(pairAddressBefore, ZERO_ADDRESS);
 
-      const createPair = await rocketToken.createUniswapPair();
+      const createPair = await rocketToken.createUniswapPair(weth.address);
       expectEvent.inTransaction(createPair.tx, uniswapFactory, 'PairCreated');
       
   });
   
   it('should create a uniswap pair only once', async () => {
-      await rocketToken.createUniswapPair();
+      await rocketToken.createUniswapPair(weth.address);
 
       await expectRevert(
-          rocketToken.createUniswapPair(),
+          rocketToken.createUniswapPair(weth.address),
           'Token: pool already created'
       );
   });
 
   it('should revert if pair creator is not an owner', async () => {
       await expectRevert(
-          rocketToken.createUniswapPair({ from: notOwner }),
+          rocketToken.createUniswapPair(weth.address,{ from: notOwner }),
           'Ownable: caller is not the owner'
       );
   });

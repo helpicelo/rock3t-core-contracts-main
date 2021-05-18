@@ -1,4 +1,3 @@
-// const Ganache = require('../helpers/ganache');
 const { expectEvent, expectRevert } = require("@openzeppelin/test-helpers");
 
 async function getAccounts() {
@@ -8,8 +7,6 @@ async function getAccounts() {
 const FeeApprover = artifacts.require("FeeApprover");
 
 describe('fee approver', function () {
-  // const ganache = new Ganache(web3);
-  // afterEach('revert', ganache.revert);
   let accounts
   let NOT_OWNER
   let PAIR_FAKE
@@ -28,7 +25,6 @@ describe('fee approver', function () {
     NOT_OWNER = accounts[1];
     PAIR_FAKE = accounts[2];
     LIQUID_VAULT_FAKE = accounts[2];
-    // await ganache.snapshot();
   });
   
   beforeEach(async function () {

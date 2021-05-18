@@ -1,7 +1,7 @@
 node_modules
 
-artifacts
-
+artifacts/*
+cache/*
 build/contracts/*
 !build/contracts/UniswapFactory.json
 !build/contracts/UniswapRouter.json

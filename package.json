@@ -7,10 +7,11 @@
         "test": "test"
     },
     "scripts": {
-        "test:dev": "truffle test ./test/development/*",
-        "test:alfajores": "truffle test ./test/alfajores",
-        "compile": "truffle compile",
+        "test:dev": "hardhat test ./test/development/*",
+        "test:alfajores": "hardhat test ./test/alfajores/*",
+        "compile": "hardhat compile",
         "ganache": "ganache-cli -e 12000",
+        "deploy:alfajores": "npm run compile && truffle migrate --network kovan",
         "deploy:kovan": "npm run compile && truffle migrate --network kovan"
     },
     "author": "",
